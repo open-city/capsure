@@ -24,6 +24,8 @@
     .well
       %h4 Location
       = @event.location
+      %p
+        %a.btn.btn-success{:href => "https://maps.google.com/maps?f=d&hl=en&geocode=&daddr=#{encodeAddress @event.location}+Chicago,+IL"} Get directions
 
     .well
       %h4 Add to my calendar
