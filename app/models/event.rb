@@ -6,10 +6,10 @@ class Event < ActiveRecord::Base
   end
 
   def start_date_cal
-    start_date.utc.strftime("%Y%m%dT%H%M%SZ")
+    start_date.strftime("%Y%m%dT%H%M%S")
   end
 
   def end_date_cal
-    end_date.utc.strftime("%Y%m%dT%H%M%SZ")
+    end_date.strftime("%Y%m%dT%H%M%S")
   end
 end
