@@ -22,8 +22,8 @@ class EventController < ApplicationController
     calendar = RiCal.Calendar
     event = RiCal.Event
     event.description = @event[ :name ]
-    event.dtstart = @event[ :start_date ].to_datetime
-    event.dtend = @event[ :end_date ].to_datetime
+    event.dtstart = @event[ :start_date ].in_time_zone
+    event.dtend = @event[ :end_date ].in_time_zone
     event.location = @event[ :location ] + ", Chicago, IL"
     calendar.add_subcomponent( event )
 
