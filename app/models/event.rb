@@ -4,4 +4,12 @@ class Event < ActiveRecord::Base
   def start_date_formatted
     start_date.strftime("%b %d, %Y")
   end
+
+  def start_date_cal
+    start_date.strftime("%Y%m%dT%H%M%SZ")
+  end
+
+  def end_date_cal
+    end_date.strftime("%Y%m%dT%H%M%SZ")
+  end
 end
