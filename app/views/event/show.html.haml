@@ -16,3 +16,6 @@
   %dd
     %strong Contact:
     = @event.contact_details
+
+%h4 Download
+%a{ :href => "#{@event.id}/ical.ics" } iCalendar

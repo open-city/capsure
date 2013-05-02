@@ -106,6 +106,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.4)
+    ri_cal (0.8.8)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -146,6 +147,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   rails (= 3.2.12)
+  ri_cal
   therubyracer
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

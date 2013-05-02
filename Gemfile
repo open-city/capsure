@@ -48,3 +48,6 @@ gem 'unicorn'
 # gem 'debugger'
 
 gem 'newrelic_rpm'
+
+gem 'ri_cal'
+# gem 'google_calendar'
