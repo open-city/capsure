@@ -1,6 +1,8 @@
 %h1 CAPS meetings
 
-%p.lead Find when and where your next CAPS meeting is. Then go to it.
+%p.lead 
+  Find when and where your next CAPS meeting is. 
+  %strong Then go to it.
 
 %p Chicago Alternative Policing Strategy Meetings, or CAPS Meetings, are recurring events in the City of Chicago between the Chicago Police Department and Chicago residents. The goal of CAPS is to blend traditional policing strategies with “alternative” strategies aimed at encouraging community members and police to work together to reduce the occurrence of crimes.
 
@@ -16,3 +18,5 @@
   .span2
     %h4
       %a{:href => "/calendar/#{calendar.id}"} District #{calendar.id}
+      %br
+      %small #{calendar.event_count} events

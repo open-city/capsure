@@ -5,7 +5,7 @@
   - @events.each do |event|
     %dt
       %h4
-        = event.start_date.strftime("%m/%d/%Y")
+        = event.start_date_formatted
     %dd
       %h4
         %a{:href => "/calendar/#{@calendar.id}/#{event.id}"}

@@ -1,2 +1,18 @@
-%h1 Event#show
-%p Find me in app/views/event/show.html.haml
+%h1 
+  #{@event.name}
+  %small 
+    %a{:href => "/calendar/#{@calendar.id}"}
+      District #{@calendar.id} CAPS meeting
+%hr
+
+%h3
+  = @event.start_date_formatted
+
+%dl.dl-horizontal
+  %dd= @event.details
+  %dd
+    %strong Location:
+    = @event.location
+  %dd
+    %strong Contact:
+    = @event.contact_details
