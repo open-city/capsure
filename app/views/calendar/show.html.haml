@@ -14,6 +14,7 @@
     %dd
       %strong Location:
       = event.location
-    %dd
-      %strong Contact:
-      = event.contact_details
+    - unless event.contact_details == ''
+      %dd
+        %strong Contact:
+        = event.contact_details

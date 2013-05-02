@@ -16,8 +16,9 @@
     %p.lead 
       = @event.details
 
-    %h4 Contact
-    = @event.contact_details
+    - unless @event.contact_details == ''
+      %h4 Contact
+      = @event.contact_details
 
   .span4
     .well
@@ -26,4 +27,4 @@
 
     .well
       %h4 Add to my calendar
-      %a{ :href => "#{@event.id}/ical.ics" } iCal Calendar
+      %a{ :href => "#{@event.id}/ical.ics" } iCal calendar
