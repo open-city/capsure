@@ -1,0 +1,7 @@
+%h1 Browse by district
+- @calendars.each do |calendar|
+  .span2
+    %h4
+      %a{:href => "/calendar/#{calendar.id}"} District #{calendar.id}
+      %br
+      %small #{calendar.event_count} events

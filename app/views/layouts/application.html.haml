@@ -10,11 +10,6 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
-    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
-    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
-    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
-    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="favicon.ico" rel="shortcut icon")
 
 
   %body
@@ -26,11 +21,10 @@
             %span.icon-bar
             %span.icon-bar
           %a.brand(href="/") CAPSure
-          / .container.nav-collapse
-          /   %ul.nav
-          /     %li= link_to "Link 1", "/path1"
-          /     %li= link_to "Link 2", "/path2"
-          /     %li= link_to "Link 3", "/path3"
+          .container.nav-collapse
+            %ul.nav
+              %li= link_to "Browse", "/browse"
+              %li= link_to "About", "/about"
 
     .container-fluid
 
@@ -41,10 +35,13 @@
     
       %footer
         %hr
-        %p.pull-right
-          An <a href='http://opencityapps.org'>Open City</a> app by Derek Eder, Forest Gregg and Nick Doiron.
+        .row-fluid
+          .span10.offset1
+            %p
+              An <a href='http://opencityapps.org'>Open City</a> app by Derek Eder, Forest Gregg and Nick Doiron.
     /
       Javascripts
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    = content_for :javascripts

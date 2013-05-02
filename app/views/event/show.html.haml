@@ -1,21 +1,29 @@
-%h1 
-  #{@event.name}
-  %small 
-    %a{:href => "/calendar/#{@calendar.id}"}
-      District #{@calendar.id} CAPS meeting
-%hr
+.row.fluid
+  .span12
+    %h1 
+      #{@event.name}
+      %small 
+        %br
+        %a{:href => "/calendar/#{@calendar.id}"}
+          District #{@calendar.id} CAPS meeting
+    %hr
 
-%h3
-  = @event.start_date_formatted
+.row.fluid
+  .span8
+    %h3
+      = @event.start_date_formatted
 
-%dl.dl-horizontal
-  %dd= @event.details
-  %dd
-    %strong Location:
-    = @event.location
-  %dd
-    %strong Contact:
+    %p.lead 
+      = @event.details
+
+    %h4 Contact
     = @event.contact_details
 
-%h4 Download
-%a{ :href => "#{@event.id}/ical.ics" } iCalendar
+  .span4
+    .well
+      %h4 Location
+      = @event.location
+
+    .well
+      %h4 Add to my calendar
+      %a{ :href => "#{@event.id}/ical.ics" } iCal Calendar
