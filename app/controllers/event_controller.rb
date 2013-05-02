@@ -7,6 +7,15 @@ class EventController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
+  def next_event
+    @event = Event.where('start_date >= ?', Time.now )
+      .where( :calendar_id => params[:id] )
+      .order( 'start_date' )
+      .limit(1)
+      .first
+    redirect_to "/calendar/" + params[:id] + "/" + @event.id.to_s
+  end
+
   def ical
     @event = Event.find(params[:event_id])
 

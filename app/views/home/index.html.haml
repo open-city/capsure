@@ -8,9 +8,9 @@
 
 %h3 Find your next meeting
 
-%form.form-search
-  %input{:type => "text", :placeholder => "Enter your address"}
-  %button.btn.btn-primary{:type => "submit"} Search
+%div.form-search
+  %input#address{:type => "text", :placeholder => "Enter your address"}
+  %a.btn.btn-primary{ :onclick => "searchAddress();" } Search
 
 
 %h3 Browse by district
@@ -20,3 +20,6 @@
       %a{:href => "/calendar/#{calendar.id}"} District #{calendar.id}
       %br
       %small #{calendar.event_count} events
+
+%script{ :type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?sensor=false" }
+%script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
