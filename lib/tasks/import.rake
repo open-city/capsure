@@ -1,4 +1,10 @@
 namespace :import do
+
+  desc "Import all calendars and events"
+  task :all => :environment do
+    Rake::Task["import:community_calendars"].invoke
+    Rake::Task["import:community_events"].invoke
+  end
   
   desc "Fetch all calendars from CPD communityCalendar"
   task :community_calendars => :environment do
