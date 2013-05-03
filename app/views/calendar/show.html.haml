@@ -11,9 +11,10 @@
         %a{:href => "/calendar/#{@calendar.id}/#{event.id}"}
           = event.name
     %dd= event.details
-    %dd
-      %strong Location:
-      = event.location
+    - unless event.location.nil?
+      %dd
+        %strong Location:
+        = event.location
     - unless event.contact_details == ''
       %dd
         %strong Contact:

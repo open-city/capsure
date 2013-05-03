@@ -25,10 +25,20 @@
       %h4 Location
       = @event.location
       %p
-        %a.btn.btn-success{:href => "https://maps.google.com/maps?f=d&hl=en&geocode=&daddr=#{encodeAddress @event.location}+Chicago,+IL"} Get directions
+        %a.btn.btn-success{:href => @event.directions_link} Get directions
 
     .well
       %h4 Add to my calendar
-      %a{ :href => "#{@event.id}/ical.ics" } iCal / Outlook
-      %br
-      %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.location}&trp=false&sprop=Capsure&sprop=name:http://capsure.herokuapp.com" } Google Calendar
+      %ul.unstyled
+        %li
+          %a{ :href => "#{@event.id}/ical.ics" } 
+            %i.icon-calendar
+            Outlook calendar
+        %li
+          %a{ :href => "#{@event.id}/ical.ics" }
+            %i.icon-calendar 
+            iCal calendar
+        %li
+          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.location}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
+            %i.icon-calendar
+            Google calendar
