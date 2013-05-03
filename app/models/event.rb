@@ -10,15 +10,19 @@ class Event < ActiveRecord::Base
   end
 
   def end_date_cal
-    end_date.strftime("%Y%m%dT%H%M%S")
+    if end_date.nil?
+      start_date_cal
+    else
+      end_date.strftime("%Y%m%dT%H%M%S")
+    end
   end
 
   def directions_link
     if location.nil?
-      return ""
+      ""
     else
       encoded_location = location.gsub(/\/n/, ' ').gsub(/ /, '+')
-      return "https://maps.google.com/maps?f=d&hl=en&geocode=&daddr=#{encoded_location}+Chicago,+IL"
+      "https://maps.google.com/maps?f=d&hl=en&geocode=&daddr=#{encoded_location}+Chicago,+IL"
     end
   end
 end

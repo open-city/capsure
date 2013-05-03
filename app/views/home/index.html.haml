@@ -1,5 +1,3 @@
-%h1 CAPSure
-
 %p.lead 
   Find when and where your next CAPS meeting is. 
   %strong Then go to it.
@@ -7,10 +5,10 @@
 .row-fluid
   .span8
     .well
-      %h3 Where do you live?
+      %h3 Find your next CAPS meeting
 
-      %form.form-search#home-search
-        %input.input-xlarge.span8#address{:type => "text", :placeholder => "Enter your address ..."}
+      %form.form-horizontal#home-search
+        %input.input-xlarge.span8#address{:type => "text", :placeholder => "Where do you live?"}
         %a.btn.btn-primary.btn-large{:onclick => "searchAddress();"} Search
 
     %h3 About
