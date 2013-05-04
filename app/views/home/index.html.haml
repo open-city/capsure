@@ -7,9 +7,9 @@
     .well
       %h3 Find your next CAPS meeting
 
-      %form.form-horizontal#home-search
+      .form-horizontal#home-search
         %input.input-xlarge.span8#address{:type => "text", :placeholder => "Where do you live?"}
-        %a.btn.btn-primary.btn-large{:onclick => "searchAddress();"} Search
+        %a.btn.btn-primary.btn-large#search{ :href => '#'} Search
 
     %h3 About
     %p 
@@ -19,6 +19,19 @@
       %br
       %a(href='/about') Read more &raquo;
 
+- content_for :javascripts do
+  %script{ :type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?sensor=false" }
+  = javascript_include_tag "maps_lib_capsure"
 
-%script{ :type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?sensor=false" }
-%script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
+  :javascript
+    $('#search').click(function(){
+      MapsLib.getDistrict();
+    });
+
+    $("#address").keydown(function(e){
+        var key =  e.keyCode ? e.keyCode : e.which;
+        if(key == 13) {
+            $('#search').click();
+            return false;
+        }
+    });
