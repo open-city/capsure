@@ -20,8 +20,6 @@
       %a(href='/about') Read more &raquo;
 
 - content_for :javascripts do
-  %script{ :type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?sensor=false" }
-  = javascript_include_tag "maps_lib_capsure"
 
   :javascript
     $('#search').click(function(){

@@ -14,7 +14,8 @@
     - unless event.location.nil?
       %dd
         %strong Location:
-        = event.location
+        = event.location_details
+        = event.address
     - unless event.contact_details == ''
       %dd
         %strong Contact:

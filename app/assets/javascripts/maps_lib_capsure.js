@@ -44,8 +44,7 @@ var MapsLibCapsure = {
       mapTypeControl: false,
       scrollwheel: false,
       draggable: false,
-      panControl: true,
-      styles: MapsLibCapsureStyles.styles
+      panControl: false
     };
     MapsLibCapsure.map = new google.maps.Map(document.getElementById("mapDetail"), myOptions);
   },
