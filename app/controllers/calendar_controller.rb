@@ -1,4 +1,8 @@
 class CalendarController < ApplicationController
+
+  caches_page :index
+  caches_page :show
+
   def index
     @calendars = Calendar.select("calendars.id, calendars.name, count(calendars.id) as event_count")
                          .joins("LEFT JOIN events ON events.calendar_id = calendars.id")

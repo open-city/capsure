@@ -48,3 +48,5 @@
     %script{ :type => "text/javascript", :src => "http://maps.googleapis.com/maps/api/js?sensor=false" }
     = javascript_include_tag "maps_lib_capsure"
     = content_for :javascripts
+
+    = javascript_include_tag "analytics_lib" if Rails.env.production?
