@@ -5,6 +5,10 @@ class Event < ActiveRecord::Base
     start_date.strftime("%b %d, %Y")
   end
 
+  def start_date_formatted_simple
+    start_date.strftime("%b %d")
+  end
+
   def start_date_cal
     start_date.strftime("%Y%m%dT%H%M%S")
   end

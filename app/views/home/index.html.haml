@@ -4,6 +4,9 @@
       Find when and where your next CAPS meeting is. 
       %strong Then go to it.
 
+.row-fluid
+  .span8
+
     .well
       %h3 Find your next CAPS meeting
 
@@ -22,7 +25,27 @@
       %a(href='/about') Read more &raquo;
 
   .span4.hidden-phone
-    %img{:src => '/assets/mr-policeman.jpg', :alt => 'Meet your neighborhood beat officer'}
+    .well
+      %h3 
+        Upcoming
+        %small
+          %a{:href => '/browse'} Browse all &raquo;
+      %dl
+        - @events.each do |event|            
+          %dd
+            %h4
+              = event.start_date_formatted_simple
+              \-
+              %a{:href => "/district/#{event.calendar_id}/event/#{event.id}"}
+                = event.name
+          %dd= event.details
+          %dd District #{event.calendar_id}
+          - unless event.location.nil?
+            %dd
+              = event.address
+
+      %p
+        
 
 - content_for :javascripts do
 
