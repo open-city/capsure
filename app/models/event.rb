@@ -21,18 +21,49 @@ class Event < ActiveRecord::Base
     if location.nil?
       ""
     else
-      encoded_location = full_address.gsub(/\n/, ' ').gsub(/ /, '+')
+      encoded_location = address.gsub(/\n/, ' ').gsub(/ /, '+')
       "https://maps.google.com/maps?f=d&hl=en&geocode=&daddr=#{encoded_location}"
     end
   end
 
-  def full_address
-    if location.nil? or location == ''
+  def address
+    addr = parse_address[0]
+    if addr.nil? or addr == ''
       ""
-    elsif location.downcase.include? 'chicago'
-      location
+    elsif addr.downcase.include? 'chicago'
+      addr
     else
-      "#{location} Chicago, IL"
+      "#{addr} Chicago, IL"
     end
   end
+
+  def location_details
+    parse_address[1]
+  end
+
+  private
+  def parse_address
+    # logic for splitting up location and location_details
+    this_location = ''
+    this_location_details = ''
+
+    unless location.nil?
+      location_lines = location.split(/\n/)
+      location_lines.each do |l|
+        if l.match(/\d/).nil? or l.downcase.include? 'district'
+          this_location_details = l
+        else
+          this_location = l
+        end
+      end
+
+      if this_location == ''
+        this_location = location_details
+        this_location_details = ''
+      end
+    end
+
+    [this_location, this_location_details]
+  end
+
 end

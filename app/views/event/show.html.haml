@@ -24,7 +24,7 @@
       %p.lead
         = @event.location_details
         %br
-        = @event.full_address
+        = @event.address
       %p
         %a.btn.btn-success{:href => @event.directions_link} Get directions
 
@@ -40,7 +40,7 @@
             %i.icon-calendar 
             iCal calendar
         %li
-          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.location}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
+          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.address}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
             %i.icon-calendar
             Google calendar
 
@@ -50,5 +50,5 @@
       MapsLibCapsure.initializeDetailMap();
     
       if (MapsLibCapsure.map != null)
-        MapsLibCapsure.displayPoint("#{@event.full_address}");
+        MapsLibCapsure.displayPoint("#{@event.address}");
     });

@@ -24,7 +24,7 @@ class EventController < ApplicationController
     event.description = @event[ :name ]
     event.dtstart = @event[ :start_date ].in_time_zone
     event.dtend = @event[ :end_date ].in_time_zone
-    event.location = @event[ :location ] + ", Chicago, IL"
+    event.location = @event[ :address ]
     calendar.add_subcomponent( event )
 
     respond_to do |format|
