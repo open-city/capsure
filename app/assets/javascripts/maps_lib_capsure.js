@@ -29,7 +29,7 @@ var MapsLibCapsure = {
 
     if (json["rows"] != null) {
       var discrict_num = json["rows"][0];
-      window.location = "/calendar/" + discrict_num;
+      window.location = "/district/" + discrict_num;
     }
     else {
       alert("Sorry, we couldn't find your discrict")

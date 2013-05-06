@@ -13,7 +13,7 @@ class EventController < ApplicationController
       .order( 'start_date' )
       .limit(1)
       .first
-    redirect_to "/calendar/" + params[:id] + "/" + @event.id.to_s
+    redirect_to "/district/" + params[:id] + "/event/" + @event.id.to_s
   end
 
   def ical

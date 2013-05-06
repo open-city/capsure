@@ -1,9 +1,9 @@
 CapsCalendar::Application.routes.draw do
-  match '/calendar/:id' => 'calendar#show'
+  match '/district/:id' => 'calendar#show'
 
-  match '/calendar/:id/next' => 'event#next_event'
-  match '/calendar/:id/:event_id' => 'event#show'
-  match '/calendar/:id/:event_id/ical' => 'event#ical'
+  match '/district/:id/next' => 'event#next_event'
+  match '/district/:id/event/:event_id' => 'event#show'
+  match '/district/:id/event/:event_id/ical' => 'event#ical'
 
   get '/browse' => 'calendar#index'
   get '/about' => 'home#about'

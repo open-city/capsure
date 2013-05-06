@@ -4,7 +4,7 @@
       #{@event.name}
       %small 
         %br
-        %a{:href => "/calendar/#{@calendar.id}"}
+        %a{:href => "/district/#{@calendar.id}"}
           District #{@calendar.id}
     %hr
 
@@ -16,7 +16,7 @@
 
     - unless @event.contact_details == ''
       %h4 Contact
-      = @event.contact_details
+      = raw (@event.contact_details.gsub /\n/, '<br />')
 
   .span4
     .well
