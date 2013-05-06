@@ -14,7 +14,7 @@
     %p.lead 
       = @event.details
 
-    - unless @event.contact_details == ''
+    - unless @event.contact_details == '' or @event.contact_details.nil?
       %h4
         %i.icon-user 
         Contact
@@ -43,7 +43,7 @@
             %i.icon-calendar 
             iCal calendar
         %li
-          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.address}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
+          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{u @event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.address}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
             %i.icon-calendar
             Google calendar
 

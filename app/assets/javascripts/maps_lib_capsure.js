@@ -1,13 +1,16 @@
 var MapsLibCapsure = MapsLibCapsure || {};
 var MapsLibCapsure = {
 
-  fusionTableId: "1fYRn1iHFY65w6QAEzBoPnw-SHtwvgWO2zeyCrkU",
+  districtTableId: "1fYRn1iHFY65w6QAEzBoPnw-SHtwvgWO2zeyCrkU",
+  beatTableId: "1GXIIvWOaM_YDdY8GHeK0Vo-4nrceGnmhZtHLDFs",
   googleApiKey:  "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
   geocoder: new google.maps.Geocoder(),
   map: null,
   map_bounds: new google.maps.LatLngBounds(),
+  districtNumber: null,
+  beatNumber: null,
 
-  getDistrict: function(){
+  getBeatAndDistrict: function(){
     var address = $("#address").val();
     
     if(address.toLowerCase().indexOf("chicago") == -1)
@@ -16,7 +19,9 @@ var MapsLibCapsure = {
     MapsLibCapsure.geocoder.geocode({ address: address }, function(results, status){
       if(status == google.maps.GeocoderStatus.OK){
         var whereClause = "geometry not equal to '' AND ST_INTERSECTS(geometry, CIRCLE(LATLNG" + results[0].geometry.location.toString() + ",1))";
-        MapsLibCapsure.query("name", whereClause, "MapsLibCapsure.redirectToEvent");
+        
+        MapsLibCapsure.query("name", whereClause, MapsLibCapsure.districtTableId, "MapsLibCapsure.saveDistrictNumber");
+        MapsLibCapsure.query("BEAT_NUM", whereClause, MapsLibCapsure.beatTableId, "MapsLibCapsure.saveBeatNumber");
       }
       else {
         alert("Sorry, we couldn't find your address: " + status);
@@ -24,15 +29,27 @@ var MapsLibCapsure = {
     });
   },
 
-  redirectToEvent: function(json) {
+  saveDistrictNumber: function(json) {
     MapsLibCapsure.handleError(json);
 
     if (json["rows"] != null) {
-      var discrict_num = json["rows"][0];
-      window.location = "/district/" + discrict_num;
+      MapsLibCapsure.districtNumber = json["rows"][0];
+      MapsLibCapsure.redirectToEvent();
     }
-    else {
-      alert("Sorry, we couldn't find your discrict")
+  },
+
+  saveBeatNumber: function(json) {
+    MapsLibCapsure.handleError(json);
+
+    if (json["rows"] != null) {
+      MapsLibCapsure.beatNumber = json["rows"][0];
+      MapsLibCapsure.redirectToEvent();
+    }
+  },
+
+  redirectToEvent: function() {
+    if (MapsLibCapsure.districtNumber != null && MapsLibCapsure.beatNumber != null) {
+      window.location = "/district/" + MapsLibCapsure.districtNumber + "/beat/" + MapsLibCapsure.beatNumber + "/next";
     }
   },
 
@@ -71,10 +88,10 @@ var MapsLibCapsure = {
     });
   },
 
-  query: function(selectColumns, whereClause, callback) {
+  query: function(selectColumns, whereClause, fusionTableId, callback) {
     var queryStr = [];
     queryStr.push("SELECT " + selectColumns);
-    queryStr.push(" FROM " + MapsLibCapsure.fusionTableId);
+    queryStr.push(" FROM " + fusionTableId);
     queryStr.push(" WHERE " + whereClause);
 
     var sql = encodeURIComponent(queryStr.join(" "));

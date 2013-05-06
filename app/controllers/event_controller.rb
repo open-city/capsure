@@ -9,11 +9,17 @@ class EventController < ApplicationController
 
   def next_event
     @event = Event.where('start_date >= ?', Time.now )
-      .where( :calendar_id => params[:id] )
+      .where( 'calendar_id = ? AND (details LIKE ? OR name LIKE ?)', params[:id], "%#{params[:beat_id]}%", "%#{params[:beat_id]}%")
       .order( 'start_date' )
       .limit(1)
-      .first
-    redirect_to "/district/" + params[:id] + "/event/" + @event.id.to_s
+
+    if @event.length == 0
+      flash[:alert] = "<h4>You are in District #{params[:id]}, Beat #{params[:beat_id]}</h4> <p>Unfortunately, there are no upcoming events scheduled for your beat. Below is a list of all events for your district.</p>"
+      redirect_to "/district/" + params[:id]
+    else
+      flash[:alert] = "<h4>You are in District #{params[:id]}, Beat #{params[:beat_id]}. This is your next CAPS meeting.</h4>"
+      redirect_to "/district/" + params[:id] + "/event/" + @event.first.id.to_s
+    end
   end
 
   def ical
