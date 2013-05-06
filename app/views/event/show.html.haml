@@ -15,15 +15,18 @@
       = @event.details
 
     - unless @event.contact_details == ''
-      %h4 Contact
+      %h4
+        %i.icon-user 
+        Contact
       = raw (@event.contact_details.gsub /\n/, '<br />')
 
   .span4
     .well
       #mapDetail
-      %p.lead
-        = @event.location_details
-        %br
+      %p
+        - unless @event.location_details == ''
+          = @event.location_details
+          %br
         = @event.address
       %p
         %a.btn.btn-success{:href => @event.directions_link} Get directions

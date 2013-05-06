@@ -58,8 +58,7 @@ class Event < ActiveRecord::Base
       end
 
       if this_location == ''
-        this_location = location_details
-        this_location_details = ''
+        return [this_location_details , ''] # parsing failed, just return the first line as the address
       end
     end
 

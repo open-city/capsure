@@ -1,9 +1,9 @@
-%p.lead 
-  Find when and where your next CAPS meeting is. 
-  %strong Then go to it.
-
 .row-fluid
   .span8
+    %p.lead 
+      Find when and where your next CAPS meeting is. 
+      %strong Then go to it.
+
     .well
       %h3 Find your next CAPS meeting
 
@@ -13,17 +13,22 @@
 
     %h3 About
     %p 
-      Chicago Alternative Policing Strategy Meetings, or CAPS Meetings, are recurring events in the City of Chicago between the Chicago Police Department and Chicago residents. 
+      Chicago Alternative Policing Strategy Meetings, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS Meetings</a>, are recurring events between the Chicago Police Department and Chicago residents. 
     %p 
       The goal of CAPS is to blend traditional policing strategies with “alternative” strategies aimed at encouraging community members and police to work together to reduce the occurrence of crimes.
-      %br
+
+    %p
+      This site lets you find out <strong>when</strong> and <strong>where</strong> your next meeting is, in an effort to increase the level of citizen participation.
       %a(href='/about') Read more &raquo;
+
+  .span4.hidden-phone
+    %img{:src => '/assets/mr-policeman.jpg', :alt => 'Meet your neighborhood beat officer'}
 
 - content_for :javascripts do
 
   :javascript
     $('#search').click(function(){
-      MapsLib.getDistrict();
+      MapsLibCapsure.getDistrict();
     });
 
     $("#address").keydown(function(e){
