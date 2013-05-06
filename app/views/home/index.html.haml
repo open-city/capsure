@@ -39,7 +39,9 @@
               %a{:href => "/district/#{event.calendar_id}/event/#{event.id}"}
                 = event.name
           %dd= event.details
-          %dd District #{event.calendar_id}
+          %dd 
+            %a{:href => "/district/#{event.calendar_id}"}
+              District #{event.calendar_id}
           - unless event.location.nil?
             %dd
               = event.address
