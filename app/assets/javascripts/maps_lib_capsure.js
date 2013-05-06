@@ -1,20 +1,22 @@
-var MapsLib = MapsLib || {};
-var MapsLib = {
+var MapsLibCapsure = MapsLibCapsure || {};
+var MapsLibCapsure = {
 
   fusionTableId: "1fYRn1iHFY65w6QAEzBoPnw-SHtwvgWO2zeyCrkU",
   googleApiKey:  "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
+  geocoder: new google.maps.Geocoder(),
+  map: null,
+  map_bounds: new google.maps.LatLngBounds(),
 
   getDistrict: function(){
-    geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
     
     if(address.toLowerCase().indexOf("chicago") == -1)
       address += ", Chicago";
 
-    geocoder.geocode({ address: address }, function(results, status){
+    MapsLibCapsure.geocoder.geocode({ address: address }, function(results, status){
       if(status == google.maps.GeocoderStatus.OK){
         var whereClause = "geometry not equal to '' AND ST_INTERSECTS(geometry, CIRCLE(LATLNG" + results[0].geometry.location.toString() + ",1))";
-        MapsLib.query("name", whereClause, "MapsLib.redirectToEvent");
+        MapsLibCapsure.query("name", whereClause, "MapsLibCapsure.redirectToEvent");
       }
       else {
         alert("Sorry, we couldn't find your address: " + status);
@@ -23,25 +25,61 @@ var MapsLib = {
   },
 
   redirectToEvent: function(json) {
-    MapsLib.handleError(json);
+    MapsLibCapsure.handleError(json);
 
     if (json["rows"] != null) {
       var discrict_num = json["rows"][0];
-      window.location = "/calendar/" + discrict_num + "/next";
+      window.location = "/calendar/" + discrict_num;
     }
     else {
       alert("Sorry, we couldn't find your discrict")
     }
   },
 
+  initializeDetailMap: function() {
+    var myOptions = {
+      zoom: 13,
+      center: new google.maps.LatLng(41.37680856570233,-84.287109375),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      scrollwheel: false,
+      draggable: false,
+      panControl: true,
+      styles: MapsLibCapsureStyles.styles
+    };
+    MapsLibCapsure.map = new google.maps.Map(document.getElementById("mapDetail"), myOptions);
+  },
+
+  displayPoint: function(address) {
+    MapsLibCapsure.geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (MapsLibCapsure.map != null) {
+          MapsLibCapsure.map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: MapsLibCapsure.map,
+            position: results[0].geometry.location
+          });
+          MapsLibCapsure.map_bounds.extend(results[0].geometry.location);
+          MapsLibCapsure.map.fitBounds(MapsLibCapsure.map_bounds);
+
+          if (MapsLibCapsure.map.zoom > 15) {
+            MapsLibCapsure.map.setZoom(15);
+          }
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      }
+    });
+  },
+
   query: function(selectColumns, whereClause, callback) {
     var queryStr = [];
     queryStr.push("SELECT " + selectColumns);
-    queryStr.push(" FROM " + MapsLib.fusionTableId);
+    queryStr.push(" FROM " + MapsLibCapsure.fusionTableId);
     queryStr.push(" WHERE " + whereClause);
 
     var sql = encodeURIComponent(queryStr.join(" "));
-    $.ajax({url: "https://www.googleapis.com/fusiontables/v1/query?sql="+sql+"&callback="+callback+"&key="+MapsLib.googleApiKey, dataType: "jsonp"});
+    $.ajax({url: "https://www.googleapis.com/fusiontables/v1/query?sql="+sql+"&callback="+callback+"&key="+MapsLibCapsure.googleApiKey, dataType: "jsonp"});
   },
 
   handleError: function(json) {

@@ -48,6 +48,26 @@ namespace :import do
     while (event_endpoints != []) do
       event_endpoints.each do |e|
 
+        # logic for splitting up location and location_details
+        location = ''
+        location_details = ''
+
+        unless location.nil?
+          location_lines = location.split(/\n/)
+          location_lines.each do |l|
+            if l.match(/\d/).nil? or l.downcase.include? 'district'
+              location_details = l
+            else
+              location = l
+            end
+          end
+
+          if location == ''
+            location = location_details
+            location_details = ''
+          end
+        end
+
         event = Event.find_or_create_by_start_date_and_name(:start_date => e['eventStartDate'], :name => e['eventName'])
         event.calendar_id = e['calendarId']
         event.start_date = e['eventStartDate']
@@ -56,7 +76,8 @@ namespace :import do
         event.details = e['eventDetails']
         event.url = e['eventUrl']
         event.contact_details = e['contactDetails']
-        event.location = e['location']
+        event.location = location
+        event.location_details = location_details
         event.modified_date = e['modifiedDate']
         event.save!
         puts "importing #{event.name}"

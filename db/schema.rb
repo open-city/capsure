@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502045326) do
+ActiveRecord::Schema.define(:version => 20130506025224) do
 
   create_table "calendars", :force => true do |t|
     t.string   "name"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(:version => 20130502045326) do
     t.string   "location"
     t.datetime "modified_date"
     t.integer  "calendar_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "location_details", :default => ""
   end
 
 end
