@@ -2,8 +2,6 @@ class EventController < ApplicationController
 
   require 'ri_cal'
 
-  caches_page :show
-
   def show
     @calendar = Calendar.find(params[:id])
     @event = Event.find(params[:event_id])
