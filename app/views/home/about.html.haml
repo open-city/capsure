@@ -1,1 +1,109 @@
-%h1 About
+- title "About"
+.row-fluid
+  .span3
+    .well
+      %h3 Sections
+      %ol
+        %li
+          %a{:href => "#what-is-this"} What is this?
+        %li
+          %a{:href => "#what-are-caps-meetings"} What are CAPS Meetings?
+        %li
+          %a{:href => "#why-did-you-build-this"} Why did you build this?
+        %li
+          %a{:href => "#team"} Team and credits
+        %li
+          %a{:href => "#data"} Data
+        %li
+          %a{:href => "#code"} Code
+        %li
+          %a{:href => "#contact-us"} Contact us
+
+  .span9
+    %h1 About
+    %hr
+    %h4#what-is-this What is this?
+
+    %p
+      This site lets you find out <strong>when</strong> and <strong>where</strong> your next CAPS meeting is, in an effort to increase the level of citizen participation making our city safer.
+    
+    %hr
+    %h4#what-is-zoning What are CAPS Meetings?
+
+    %p 
+      Chicago Alternative Policing Strategy Meetings, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS Meetings</a>, are recurring events with the <a href='http://www.cityofchicago.org/city/en/depts/cpd.html'>Chicago Police Department</a> and Chicago residents. 
+    %p 
+      The goal of CAPS is to blend traditional policing strategies with alternative strategies aimed at encouraging community members and police to work together to reduce the occurrence of crimes.
+
+    %hr
+    %h4#team Team and credits
+    %p
+      This is an
+      %a{:href => 'http://opencityapps.org'} Open City
+      project done as a volunteer effort. We built this site because we think more Chicagoans (including ourselves) should be involved in their local communities.
+
+    %p
+      The team is:
+
+    %ul
+      %li
+        %a{:href => "http://derekeder.com"} Derek Eder
+        \- developer and designer
+      %li
+        %a{:href => "https://mapmeld.com"} Nick Doiron
+        \- developer
+
+    %hr
+    %h4#data Data
+
+    %p
+      This site was built with calendar and event from the Chicago Police Department
+      = succeed '.' do
+        %a{:href => 'http://api1.chicagopolice.org/clearpath/'} ClearPath API
+
+    %p 
+      The District and Beat boundary data is stored in Google Fusion Tables and are open for anyone to use:
+
+    %ul
+      %li
+        %a{:href => 'https://www.google.com/fusiontables/DataSource?docid=1fYRn1iHFY65w6QAEzBoPnw-SHtwvgWO2zeyCrkU'} Police District Boundaries
+      %li
+        %a{:href => 'https://www.google.com/fusiontables/DataSource?docid=1GXIIvWOaM_YDdY8GHeK0Vo-4nrceGnmhZtHLDFs'} Police Beat Boundaries
+
+    %hr
+    %h4#code Code
+    %p
+      All the code for this site is open source. It was built with Ruby on Rails, Haml, Twiiter Bootstrap, Javascript and Google's Fusion Tables and Maps API. The District and Beat boundary data is stored in Fusion Tables and was pulled from the
+      = succeed "." do
+        %a{:href => "http://data.cityofchicago.org/"} City of Chicago Data Portal
+    %p Technologies used:
+    %ul
+      %li
+        %a{:href => "http://rubyonrails.org/"} Ruby on Rails
+      %li
+        %a{:href => "http://haml.info"} Haml
+      %li
+        %a{:href => "http://www.heroku.com"} Heroku
+      %li
+        %a{:href => "http://twitter.github.com/bootstrap"} Twitter Bootstrap
+      %li
+        %a{:href => "http://jquery.com"} jQuery
+      %li
+        %a{:href => "http://code.google.com/apis/maps/documentation/javascript/"} Google Maps API V3
+      %li
+        %a{:href => "http://www.google.com/fusiontables"} Google Fusion Tables
+    %p
+      All the code for this project is up on
+      = succeed "." do
+        %a{:href => "https://github.com/open-city/capsure"} Github
+
+    %hr
+    %h4#contact-us Contact us
+
+    %p
+      Found a bug? 
+      %a{:href => 'https://github.com/open-city/capsure/issues?state=open'} Report it on our issue tracker!
+
+    %p
+      Have a suggestion? Contact us at 
+      %a{:href => 'mailto:info@opencityapps.org'} info@opencityapps.org
