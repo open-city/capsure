@@ -1,7 +1,7 @@
 var MapsLibCapsure = MapsLibCapsure || {};
 var MapsLibCapsure = {
 
-  districtTableId: "1fYRn1iHFY65w6QAEzBoPnw-SHtwvgWO2zeyCrkU",
+  districtTableId: "1RkstVFPb1b9TU-QqHZh69cDJnWZzI3j4kJB_zFQ",
   beatTableId: "1GXIIvWOaM_YDdY8GHeK0Vo-4nrceGnmhZtHLDFs",
   googleApiKey:  "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
   geocoder: new google.maps.Geocoder(),
@@ -20,7 +20,7 @@ var MapsLibCapsure = {
       if(status == google.maps.GeocoderStatus.OK){
         var whereClause = "geometry not equal to '' AND ST_INTERSECTS(geometry, CIRCLE(LATLNG" + results[0].geometry.location.toString() + ",1))";
         
-        MapsLibCapsure.query("name", whereClause, MapsLibCapsure.districtTableId, "MapsLibCapsure.saveDistrictNumber");
+        MapsLibCapsure.query("DIST_NUM", whereClause, MapsLibCapsure.districtTableId, "MapsLibCapsure.saveDistrictNumber");
         MapsLibCapsure.query("BEAT_NUM", whereClause, MapsLibCapsure.beatTableId, "MapsLibCapsure.saveBeatNumber");
       }
       else {
