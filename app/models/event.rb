@@ -2,22 +2,22 @@ class Event < ActiveRecord::Base
   attr_accessible :start_date, :end_date, :name, :details, :url, :contact_details, :location, :modified_date
 
   def start_date_formatted
-    start_date.strftime("%b %d, %Y")
+    start_date.strftime("%A, %b #{start_date.day.ordinalize}, %Y")
   end
 
   def start_date_formatted_simple
-    start_date.strftime("%b %d")
+    start_date.strftime("%b #{start_date.day.ordinalize}")
   end
 
   def start_time
-    start_date.strftime("%l:%M %p")
+    start_date.strftime("%l:%M %p").downcase
   end
 
   def end_time
     if end_date.nil?
       ""
     else
-      end_date.strftime(" - %l:%M %p")
+      end_date.strftime(" - %l:%M %p").downcase
     end
   end
 

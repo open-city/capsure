@@ -37,8 +37,8 @@
               %a{:href => "/district/#{event.calendar_id}/event/#{event.id}"}
                 = event.name
           %dd
-            = event.start_time
             = event.start_date_formatted_simple
+            = event.start_time
           %dd 
             %a{:href => "/district/#{event.calendar_id}"}
               District #{event.calendar_id}

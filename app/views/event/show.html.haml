@@ -11,10 +11,10 @@
     %hr
 
     %h3
+      = @event.start_date_formatted
+      %br
       = @event.start_time
       = @event.end_time
-      %br
-      = @event.start_date_formatted
 
     %p.lead 
       = @event.details
