@@ -9,6 +9,18 @@ class Event < ActiveRecord::Base
     start_date.strftime("%b %d")
   end
 
+  def start_time
+    start_date.strftime("%l:%M %p")
+  end
+
+  def end_time
+    if end_date.nil?
+      ""
+    else
+      end_date.strftime(" - %l:%M %p")
+    end
+  end
+
   def start_date_cal
     start_date.strftime("%Y%m%dT%H%M%S")
   end
