@@ -40,7 +40,7 @@ namespace :import do
   task :community_events => :environment do
     require 'open-uri'
     require 'json'
-    Event.delete_all
+    # Event.delete_all
 
     offset = 0
     event_endpoints = JSON.parse(open("http://api1.chicagopolice.org/clearpath/api/1.0/communityCalendar/events?offset=#{offset}").read)
