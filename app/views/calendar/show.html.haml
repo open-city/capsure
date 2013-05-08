@@ -11,7 +11,7 @@
         = event.start_time
     %dd
       %h4
-        %a{:href => "/district/#{@calendar.id}/event/#{event.id}"}
+        %a{:href => "/district/#{@calendar.id}/event/#{event.slug}"}
           = event.name
     %dd= event.details
     - unless event.location.nil?

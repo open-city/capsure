@@ -34,7 +34,7 @@
         - @events.each do |event|            
           %dd
             %h4
-              %a{:href => "/district/#{event.calendar_id}/event/#{event.id}"}
+              %a{:href => "/district/#{event.calendar_id}/event/#{event.slug}"}
                 = event.name
           %dd
             = event.start_date_formatted_simple

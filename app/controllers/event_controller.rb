@@ -4,7 +4,7 @@ class EventController < ApplicationController
 
   def show
     @calendar = Calendar.find(params[:id])
-    @event = Event.find(params[:event_id])
+    @event = Event.where('slug = ?', params[:event_slug]).first
   end
 
   def next_event
@@ -18,23 +18,27 @@ class EventController < ApplicationController
       redirect_to "/district/" + params[:id]
     else
       flash[:alert] = "<h4>You are in District #{params[:id]}, Beat #{params[:beat_id]}. This is your next CAPS meeting.</h4>"
-      redirect_to "/district/" + params[:id] + "/event/" + @event.first.id.to_s
+      redirect_to "/district/" + params[:id] + "/event/" + @event.first.slug
     end
   end
 
   def ical
-    @event = Event.find(params[:event_id])
+    @event = Event.where('slug = ?', params[:event_slug]).first
+
+    puts @event.inspect
 
     calendar = RiCal.Calendar
     event = RiCal.Event
-    event.description = @event[ :name ]
-    event.dtstart = @event[ :start_date ].in_time_zone
-    event.dtend = @event[ :end_date ].in_time_zone
-    event.location = @event[ :address ]
+    event.description = @event.name
+    event.dtstart = @event.start_date.in_time_zone
+    unless @event.end_date.nil?
+      event.dtend = @event.end_date.in_time_zone
+    end
+    event.location = @event.address
     calendar.add_subcomponent( event )
 
     respond_to do |format|
-      format.ics { send_data( calendar.export, :filename=> "capsure_" + @event.id.to_s + ".ics", :disposition=> "inline; filename=capsure_" + @event.id.to_s + ".ics", :type=> "text/calendar"  ) }
+      format.ics { send_data( calendar.export, :filename=> @event.slug + ".ics", :disposition=> "inline; filename=" + @event.slug + ".ics", :type=> "text/calendar"  ) }
     end
   end
 end
