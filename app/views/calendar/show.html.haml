@@ -19,7 +19,10 @@
         %strong Location:
         = event.location_details
         = event.address
-    - unless event.contact_details == ''
+    - unless event.contact_details == '' or event.contact_details.nil?
       %dd
         %strong Contact:
         = event.contact_details
+
+- if @events.length == 0
+  %p.lead There are no upcoming events scheduled in this District.
