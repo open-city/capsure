@@ -16,6 +16,7 @@ var MapsLibCapsure = {
     if(address.toLowerCase().indexOf("chicago") == -1)
       address += ", Chicago";
 
+    _trackClickEventWithGA("Search", "Address", address);
     MapsLibCapsure.geocoder.geocode({ address: address }, function(results, status){
       if(status == google.maps.GeocoderStatus.OK){
         var whereClause = "geometry not equal to '' AND ST_INTERSECTS(geometry, CIRCLE(LATLNG" + results[0].geometry.location.toString() + ",1))";
