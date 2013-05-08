@@ -26,6 +26,7 @@
     %p
       This site lets you find out <strong>when</strong> and <strong>where</strong> your next CAPS meeting is, in an effort to increase the level of citizen participation to make our city safer.
     
+    %hr
     %h4#what-are-caps-meetings What are CAPS Meetings?
 
     %p 
@@ -33,6 +34,7 @@
     %p 
       The goal of CAPS is to blend traditional policing strategies with alternative strategies aimed at encouraging community members and police to work together to reduce the occurrence of crimes.
 
+    %hr
     %h4#why-did-you-build-this Why did you build this?
 
     %p
@@ -42,8 +44,9 @@
       Now, with the creation of the Chicago Police Department's <a href='http://api1.chicagopolice.org/clearpath/'>ClearPath API</a>, all of this CAPS meeting data is now available in a machine readable format by anyone.
 
     %p
-      This website is a demonstration of the power of that open data. A group of developers spent a couple of days making an app, and we're one step further along the path that many others passionately set in motion.
+      This website is a demonstration of the power of that open data. A group of developers spent a couple of days making an app, and we're one step further along the path that many others passionately set in motion to use technology to improve our democracy.
 
+    %hr
     %h4#team Team and credits
     %p
       This is an
@@ -60,11 +63,15 @@
       %li
         %a{:href => "https://mapmeld.com"} Nick Doiron
         \- developer
+      %li
+        Forest Gregg
+        \- advisor
 
+    %hr
     %h4#data Data
 
     %p
-      This site was built with calendar and event from the Chicago Police Department
+      This site was built with <a href='http://api1.chicagopolice.org/clearpath/api/1.0/communityCalendar'>calendar</a> and <a href='http://api1.chicagopolice.org/clearpath/api/1.0/communityCalendar/events'>event</a> data from the Chicago Police Department
       = succeed '.' do
         %a{:href => 'http://api1.chicagopolice.org/clearpath/'} ClearPath API
 
@@ -77,6 +84,7 @@
       %li
         %a{:href => 'https://www.google.com/fusiontables/DataSource?docid=1GXIIvWOaM_YDdY8GHeK0Vo-4nrceGnmhZtHLDFs'} Police Beat Boundaries
 
+    %hr
     %h4#code Code
     %p
       All the code for this site is open source. It was built with Ruby on Rails, Haml, Twiiter Bootstrap, Javascript and Google's Fusion Tables and Maps API. The District and Beat boundary data is stored in Fusion Tables and was pulled from the
@@ -103,6 +111,7 @@
       = succeed "." do
         %a{:href => "https://github.com/open-city/capsure"} Github
 
+    %hr
     %h4#contact-us Contact us
 
     %p
