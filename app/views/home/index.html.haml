@@ -1,50 +1,46 @@
 .row-fluid
   .span8
-    %p.lead 
-      Find when and where your next CAPS meeting is. 
-      %strong Then go to it.
-
-.row-fluid
-  .span8
-
     .well
-      %h3 Find your next CAPS meeting
+      %h3 Find your next CAPS meeting. Then, go to it.
 
       .form-horizontal#home-search
         %input.input-xlarge.span8#address{:type => "text", :placeholder => "Where do you live?"}
         %a.btn.btn-primary.btn-large#search{ :href => '#'} Search
+      %p
+        or
+        %a{:href => '/browse'} browse all meetings &raquo;
 
-    %h3 About
+  .span4
+    %h3 Why should I go?
+    %h4
+      %i.icon-ok
+      Help reduce crime
+    %h4
+      %i.icon-ok
+      Get to know your local officers
+    %h4
+      %i.icon-ok
+      Engage with your neighbors
+
+.row-fluid
+  .span8
+    %h3 What are CAPS meetings?
     %p 
-      Chicago Alternative Policing Strategy Meetings, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS Meetings</a>, are recurring events with the Chicago Police Department and Chicago residents. 
+      <strong>Chicago Alternative Policing Strategy meetings</strong>, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS meetings</a>, are recurring events with the Chicago Police Department and Chicago residents. 
     %p 
       The goal of CAPS is to blend traditional policing strategies with alternative strategies aimed at encouraging community members and police to work together to reduce the occurrence of crimes.
 
     %p
-      This site lets you find out <strong>when</strong> and <strong>where</strong> your next meeting is, in an effort to increase the level of citizen participation.
+      CAPSure lets you find out <strong>when</strong> and <strong>where</strong> your next meeting is, in an effort to increase the level of citizen participation.
       %a(href='/about') Read more &raquo;
 
-  .span4.hidden-phone
-    .well
-      %h3 
-        Upcoming
-        %small
-          %a{:href => '/browse'} Browse all &raquo;
-      %dl
-        - @events.each do |event|            
-          %dd
-            %h4
-              %a{:href => "/district/#{event.calendar_id}/event/#{event.slug}"}
-                = event.name
-          %dd
-            = event.start_date_formatted_simple
-            = event.start_time
-          %dd 
-            %a{:href => "/district/#{event.calendar_id}"}
-              District #{event.calendar_id}
+  .span4
+    %h3 It's easy!
 
-      %p
-        
+    %ul
+      %li no registration required
+      %li anyone can attend
+      %li each beat meets at least once every 3 months
 
 - content_for :javascripts do
 

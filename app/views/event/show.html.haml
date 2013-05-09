@@ -1,6 +1,6 @@
 - title @event.name
 
-.row.fluid
+.row-fluid
   .span8
     %h1 
       #{@event.name}
@@ -10,20 +10,35 @@
           District #{@calendar.id}
     %hr
 
-    %h3
-      = @event.start_date_formatted_full
-      %br
-      = @event.start_time
-      = @event.end_time
+    .row-fluid
+      .span6
+        %p
+          = @event.start_date_formatted_full
+          %br
+          = @event.start_time
+          = @event.end_time
 
-    %p.lead 
-      = @event.details
+          - unless @event.location_details == ''
+            %br
+            = @event.location_details
+            %br
+          = @event.address
 
-    - unless @event.contact_details == '' or @event.contact_details.nil?
-      %h4
-        %i.icon-user 
-        Contact
-      = raw (@event.contact_details.gsub /\n/, '<br />')
+      .span6
+        - unless @event.contact_details == '' or @event.contact_details.nil?
+          %h4
+            %i.icon-user 
+            Contact
+          = raw (@event.contact_details.gsub /\n/, '<br />')
+
+    - unless @event.details == '' or @event.details.nil?
+      .row-fluid
+        .span12
+          %h4
+            %i.icon-info-sign
+            Details
+          %p
+            = @event.details
 
     %hr
     #disqus_thread
@@ -73,7 +88,7 @@
             Google calendar
 
     .well
-      %h4 Tell your friends to go
+      %h4 Tell your neighbors to go
       / AddThis Button BEGIN
       .addthis_toolbox.addthis_default_style
         %a.addthis_button_facebook_like{"fb:like:layout" => "button_count"}

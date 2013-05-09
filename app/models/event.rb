@@ -2,15 +2,15 @@ class Event < ActiveRecord::Base
   attr_accessible :start_date, :end_date, :name, :details, :url, :contact_details, :location, :modified_date
 
   def start_date_formatted
-    start_date.strftime("%b #{start_date.day.ordinalize}, %Y")
+    start_date.strftime("%B #{start_date.day}, %Y")
   end
 
   def start_date_formatted_full
-    start_date.strftime("%A, %b #{start_date.day.ordinalize}, %Y")
+    start_date.strftime("%A, %B #{start_date.day}, %Y")
   end
 
   def start_date_formatted_simple
-    start_date.strftime("%b #{start_date.day.ordinalize}")
+    start_date.strftime("%B #{start_date.day}")
   end
 
   def start_time
