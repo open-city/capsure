@@ -1,7 +1,6 @@
 class CalendarController < ApplicationController
 
   caches_page :index
-  caches_page :show
 
   def index
     @calendars = Calendar.select("calendars.id, calendars.name, count(calendars.id) as event_count")
@@ -14,7 +13,14 @@ class CalendarController < ApplicationController
 
   def show
     @calendar = Calendar.find(params[:id])
-    @events = Event.where('calendar_id = ? AND start_date >= ?', params[:id], Time.now)
-                   .order("start_date")
+    @events = cached_events_list
   end
+
+  def cached_events_list
+    Rails.cache.fetch("district_events_#{params[:id]}") do
+      Event.where('calendar_id = ? AND start_date >= ?', params[:id], Time.now)
+                  .order("start_date")
+    end
+  end
+
 end

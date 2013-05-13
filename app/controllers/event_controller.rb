@@ -4,7 +4,13 @@ class EventController < ApplicationController
 
   def show
     @calendar = Calendar.find(params[:id])
-    @event = Event.where('slug = ?', params[:event_slug]).first
+    @event = cached_event
+  end
+
+  def cached_event
+    Rails.cache.fetch(params[:event_slug]) do
+      Event.where('slug = ?', params[:event_slug]).first
+    end
   end
 
   def next_event
