@@ -10,8 +10,15 @@
           District #{@calendar.id}
     %hr
 
+    - unless @event.details == '' or @event.details.nil?
+      %p
+        = @event.details
+
     .row-fluid
       .span6
+        %h4 
+          %i.icon-info-sign
+          Details
         %p
           = @event.start_date_formatted_full
           %br
@@ -21,24 +28,33 @@
           - unless @event.location_details == ''
             %br
             = @event.location_details
-            %br
+          %br
           = @event.address
 
-      .span6
         - unless @event.contact_details == '' or @event.contact_details.nil?
           %h4
             %i.icon-user 
             Contact
           = raw (@event.contact_details.gsub /\n/, '<br />')
 
-    - unless @event.details == '' or @event.details.nil?
-      .row-fluid
-        .span12
-          %h4
-            %i.icon-info-sign
-            Details
-          %p
-            = @event.details
+      .span6
+
+        %h4 
+          %i.icon-calendar
+          Add to your calendar
+        %ul.unstyled
+          %li
+            %a{ :href => "#{@event.slug}/ical.ics" } 
+              %i.icon-calendar
+              Outlook calendar
+          %li
+            %a{ :href => "#{@event.slug}/ical.ics" }
+              %i.icon-calendar 
+              iCal calendar
+          %li
+            %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{u @event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.address}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
+              %i.icon-calendar
+              Google calendar
 
     .hidden-phone
       %hr
@@ -67,22 +83,6 @@
         = @event.address
       %p
         %a.btn.btn-success{:href => @event.directions_link} Get directions
-
-    .well
-      %h4 Add to my calendar
-      %ul.unstyled
-        %li
-          %a{ :href => "#{@event.slug}/ical.ics" } 
-            %i.icon-calendar
-            Outlook calendar
-        %li
-          %a{ :href => "#{@event.slug}/ical.ics" }
-            %i.icon-calendar 
-            iCal calendar
-        %li
-          %a{ :href => "http://www.google.com/calendar/event?action=TEMPLATE&text=#{u @event.name}&dates=#{@event.start_date_cal}/#{@event.end_date_cal}&details=#{@event.details}&location=#{@event.address}&trp=false&sprop=Capsure&sprop=name:http://capsure.opencityapps.org" } 
-            %i.icon-calendar
-            Google calendar
 
     .well
       %h4 Tell your neighbors to go

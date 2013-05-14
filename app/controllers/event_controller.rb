@@ -35,6 +35,7 @@ class EventController < ApplicationController
 
     calendar = RiCal.Calendar
     event = RiCal.Event
+    event.summary = @event.name
     event.description = @event.name
     event.dtstart = @event.start_date.in_time_zone
     unless @event.end_date.nil?
