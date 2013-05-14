@@ -1,5 +1,9 @@
 # CAPSure
 
+Chicago Alternative Policing Strategy meetings, or CAPS meetings, are occasional sit-downs between the Chicago Police Department and Chicago residents.
+
+CAPS meetings are the place to meet the cops that work in your beat, chat about local problems, and work together to fix them.
+
 CAPSure lets you find out when and where your next meeting is, in an effort to get more Chicagoans involved in community policing.
 
 ## Installation
