@@ -1,5 +1,5 @@
 .row-fluid
-  .span8
+  .span8.offset2
     .well
       %h3 Find your next CAPS meeting. Then, go to it.
 
@@ -10,20 +10,6 @@
         or
         %a{:href => '/browse'} browse all meetings &raquo;
 
-  .span4
-    %h3 Why should I go?
-    %h4
-      %i.icon-ok
-      Help reduce crime
-    %h4
-      %i.icon-ok
-      Get to know your local officers
-    %h4
-      %i.icon-ok
-      Engage with your neighbors
-
-.row-fluid
-  .span8
     %h3 What are CAPS meetings?
     %p 
       <strong>Chicago Alternative Policing Strategy meetings</strong>, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS meetings</a>, are occasional sit-downs between the Chicago Police Department and Chicago residents. 
@@ -32,6 +18,14 @@
     %p
       CAPSure lets you find out <strong>when</strong> and <strong>where</strong> your next meeting is, in an effort to get more Chicagoans involved in community policing.
       %a(href='/about') Read more &raquo;
+
+.row-fluid
+  .span4.offset2
+    %h3 Why should I go?
+    %ul
+      %li Help reduce crime
+      %li Get to know your local officers
+      %li Engage with your neighbors
 
   .span4
     %h3 It's easy!
