@@ -8,7 +8,7 @@ class CalendarController < ApplicationController
   end
 
   def show
-    @calendar = Calendar.find(params[:id])
+    @calendar = Rails.cache.fetch("calendar_#{params[:id]}") {Calendar.find(params[:id]) }
 
     @status = params[:status]
 

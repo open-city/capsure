@@ -3,11 +3,17 @@
 
 %ul.nav.nav-pills
   %li{:class => (@status == 'upcoming') ? 'disabled' : ''}
-    %a{:href => "/district/#{@calendar.id}"} Upcoming
+    %a{:href => "/district/#{@calendar.id}"} 
+      Upcoming
+      (#{@calendar.upcoming_event_count})
   %li{:class => (@status == 'today') ? 'disabled' : ''}
-    %a{:href => "/district/#{@calendar.id}/today"} Today
+    %a{:href => "/district/#{@calendar.id}/today"} 
+      Today
+      (#{@calendar.today_event_count})
   %li{:class => (@status == 'past') ? 'disabled' : ''}
-    %a{:href => "/district/#{@calendar.id}/past"} Past
+    %a{:href => "/district/#{@calendar.id}/past"} 
+      Past
+      (#{@calendar.past_event_count})
 
 %hr
 
