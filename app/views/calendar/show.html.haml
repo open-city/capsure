@@ -37,7 +37,10 @@
     %dd &nbsp;
 
 - if @events.length == 0
-  %p.lead There are no upcoming events scheduled in this District.
+  - if @status == 'today'
+    %p.lead There are no events today in this District.
+  - else
+    %p.lead There are no #{@status} events scheduled in this District.
 
 :javascript
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

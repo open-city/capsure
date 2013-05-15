@@ -6,4 +6,4 @@
     %h4
       %a{:href => "/district/#{calendar.id}"} District #{calendar.id}
       %br
-      %small #{calendar.event_count} events
+      %small #{pluralize(calendar.event_count, 'event')}
