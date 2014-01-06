@@ -23,7 +23,6 @@ group :assets do
 end
 
 gem 'haml-rails'
-gem 'less-rails-bootstrap'
 gem 'twitter-bootstrap-rails', '2.2.6'
 
 gem 'jquery-rails'
