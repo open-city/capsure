@@ -1,7 +1,7 @@
 .row-fluid
   .span8.offset2
     .well
-      %h3 Find your next CAPS meeting. Then, go to it.
+      %h3 Find your next <a href='/about#what-are-caps-meetings'>CAPS meeting</a>. Then, go to it.
 
       .form-horizontal#home-search
         %input.input-xlarge.span8#address{:type => "text", :placeholder => "Where do you live?"}
@@ -10,30 +10,11 @@
         or
         %a{:href => '/browse'} browse all meetings &raquo;
 
-    %h3 What are CAPS meetings?
     %p 
-      <strong>Chicago Alternative Policing Strategy meetings</strong>, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS meetings</a>, are occasional sit-downs between the Chicago Police Department and Chicago residents. 
-    %p 
-      CAPS meetings are the place to meet the cops that work in your beat, chat about local problems, and work together to fix them.
+      <strong>Chicago Alternative Policing Strategy meetings</strong>, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS meetings</a> are the place to meet the cops that work in your beat, chat about local problems, and work together to fix them.
     %p
       CAPSure lets you find out <strong>when</strong> and <strong>where</strong> your next meeting is, in an effort to get more Chicagoans involved in community policing.
       %a(href='/about') Read more &raquo;
-
-.row-fluid
-  .span4.offset2
-    %h3 Why should I go?
-    %ul
-      %li help reduce crime
-      %li get to know your local officers
-      %li engage with your neighbors
-
-  .span4
-    %h3 It's easy!
-
-    %ul
-      %li no registration required
-      %li anyone can attend
-      %li each beat meets at least once every 3 months
 
 - content_for :javascripts do
 
