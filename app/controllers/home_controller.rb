@@ -3,8 +3,7 @@ class HomeController < ApplicationController
   caches_page :index
 
   def index
-    @events = Event.where('start_date >= ?', Time.now)
-                   .order("start_date")
-                   .limit(3)
+    @calendars = Calendar.where("calendars.id >= 1 AND calendars.id <= 25")
+                           .order("calendars.id")
   end
 end

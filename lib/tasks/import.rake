@@ -48,7 +48,8 @@ namespace :import do
     while (event_endpoints != []) do
       event_endpoints.each do |e|
 
-        event = Event.find_or_create_by_start_date_and_name(:start_date => e['eventStartDate'], :name => e['eventName'])
+        event = Event.where(:start_date => e['eventStartDate'], :name => e['eventName']).first_or_create!
+        # puts event.inspect
         event.calendar_id = e['calendarId']
         event.start_date = e['eventStartDate']
         event.end_date = e['eventEndDate']
@@ -60,8 +61,8 @@ namespace :import do
         event.modified_date = e['modifiedDate']
 
         event.slug = to_slug "#{event.start_date.strftime('%m %d %Y %l %M %p')} #{event.calendar_id.ordinalize} #{event.name}"
-        event.save!
-        # puts "importing #{event.name}"
+        event.save
+        puts "importing #{event.name}"
       end
 
       offset = offset + 10

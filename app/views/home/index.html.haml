@@ -1,15 +1,23 @@
 .row-fluid
-  .span8.offset2
+  .span10.offset1
     .well
       %h3 Find your next <a href='/about#what-are-caps-meetings'>CAPS meeting</a>. Then, go to it.
 
       .form-horizontal#home-search
         %input.input-xlarge.span8#address{:type => "text", :placeholder => "Where do you live?"}
         %a.btn.btn-primary.btn-large#search{ :href => '#'} Search
-      %p
-        or
-        %a{:href => '/browse'} browse all meetings &raquo;
 
+    %h4 Browse meetings by district
+    - @calendars.each do |calendar|
+      .span2
+        %h4
+          %a{:href => "/district/#{calendar.id}"} District #{calendar.id}
+          %br
+          %small #{pluralize(calendar.upcoming_event_count, 'event')}
+
+    .clearfix
+    %hr
+    %h4 What is this?
     %p 
       <strong>Chicago Alternative Policing Strategy meetings</strong>, or <a href='https://portal.chicagopolice.org/portal/page/portal/ClearPath/Get%20Involved/How%20CAPS%20works/Beat%20Meetings'>CAPS meetings</a> are the place to meet the cops that work in your beat, chat about local problems, and work together to fix them.
     %p
