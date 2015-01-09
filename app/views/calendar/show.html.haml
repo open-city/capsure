@@ -1,5 +1,5 @@
 - title "District #{@calendar.id} meetings"
-%h1 District #{@calendar.id} meetings
+%h1 Meetings for District #{@calendar.id} - #{@calendar.friendly_name}
 
 %ul.nav.nav-pills
   %li{:class => (@status == 'upcoming') ? 'disabled' : ''}

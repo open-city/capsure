@@ -9,9 +9,9 @@
 
     %h4 Browse meetings by district
     - @calendars.each do |calendar|
-      .span2
+      .span4
         %h4
-          %a{:href => "/district/#{calendar.id}"} District #{calendar.id}
+          %a{:href => "/district/#{calendar.id}"} District #{calendar.id}: #{calendar.friendly_name}
           %br
           %small #{pluralize(calendar.upcoming_event_count, 'event')}
 
