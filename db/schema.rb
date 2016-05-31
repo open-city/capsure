@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130508214613) do
+ActiveRecord::Schema.define(:version => 20160531164629) do
 
   create_table "calendars", :force => true do |t|
     t.string   "name"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20130508214613) do
     t.text     "details"
     t.string   "url"
     t.string   "contact_details"
-    t.string   "location"
+    t.text     "location"
     t.datetime "modified_date"
     t.integer  "calendar_id"
     t.datetime "created_at",                      :null => false
